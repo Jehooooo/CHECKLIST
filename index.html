@@ -144,8 +144,8 @@
           <div class="progress-fill" id="overall-progress-fill"></div>
         </div>
         <div class="day-mini-pills">
-          <span class="day-mini-pill" id="pill-day-1">Day 1: 0/8</span>
-          <span class="day-mini-pill" id="pill-day-2">Day 2: 0/7</span>
+          <span class="day-mini-pill" id="pill-day-1">Day 1: 0/7</span>
+          <span class="day-mini-pill" id="pill-day-2">Day 2: 0/8</span>
           <span class="day-mini-pill" id="pill-day-3">Day 3: 0/3</span>
         </div>
       </section>
@@ -171,14 +171,6 @@
         >
           ✏️ Edit Checklist
         </button>
-        <button
-          type="button"
-          class="action-btn action-btn--swap"
-          id="swap-days-btn"
-          title="Swap Day 1 and Day 2 schedules"
-        >
-          ⇄ Swap Day 1 &amp; 2
-        </button>
         <button type="button" class="action-btn" id="expand-collapse-btn">
           ▾ Collapse All
         </button>
@@ -202,18 +194,17 @@
     </nav>
 
     <!-- ==================== 3-DAY ITINERARY STACK ==================== -->
-    <!-- Note: Day 1 and Day 2 schedules are pre-swapped as requested! -->
     <div class="days-stack" id="days-stack" tabindex="-1">
 
-      <!-- ==================== DAY 1 (Swapped from original Day 2) ==================== -->
+      <!-- ==================== DAY 1 ==================== -->
       <section class="day-card" data-day="1" id="day-card-1">
         <details class="day-disclosure" open>
           <summary class="day-summary">
             <div class="day-summary-main">
               <div class="day-sticker" id="day-1-sticker">
                 <img
-                  src="assets/nailong-rides.jpg"
-                  alt="Nailong wearing purple heart sunglasses holding pink cotton candy by a pastel Ferris wheel"
+                  src="assets/nailong-downtown.jpg"
+                  alt="Nailong wearing a pink and purple beanie with a pink travel suitcase and Baguio snacks"
                   width="74"
                   height="74"
                   decoding="async"
@@ -225,219 +216,17 @@
                   <span class="day-date">December 21, 2026</span>
                 </div>
                 <h2 class="day-title" id="day-1-subtitle">
-                  Rides • Botanical Garden • Mansion House • Ukay-ukay
-                </h2>
-              </div>
-            </div>
-            <div class="day-summary-right">
-              <span class="day-count-badge" id="day-1-badge">0 / 8 done</span>
-              <span class="day-chevron" aria-hidden="true">▾</span>
-            </div>
-          </summary>
-
-          <div class="day-body" id="day-1-body">
-            <ul class="timeline-list" data-schedule-group="rides-tour">
-              <li class="timeline-item" data-item-id="r1-skyranch">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r1-skyranch" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🎡 8:00–9:00 AM</span>
-                      <span class="item-title">Sky Ranch Baguio</span>
-                    </span>
-                    <p class="item-desc">Enjoy the rides and Ferris wheel beside SM City Baguio.</p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r2-arcade">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r2-arcade" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🕹️ 9:00–11:00 AM</span>
-                      <span class="item-title">Arcade and Fantasy World</span>
-                    </span>
-                    <p class="item-desc">
-                      Enjoy arcade games and explore Fantasy World, subject to opening hours and availability.
-                    </p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r3-lunch">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r3-lunch" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🍱 11:00 AM–12:00 PM</span>
-                      <span class="item-title">Lunch and rest</span>
-                    </span>
-                    <p class="item-desc">Eat and recharge before the afternoon tour.</p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r4-nature-tour">
-                <label class="check-row">
-                  <input
-                    type="checkbox"
-                    class="checkbox-custom main-check has-substops"
-                    data-id="r4-nature-tour"
-                  />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🌸 12:00–3:00 PM</span>
-                      <span class="item-title">Nature and landmark tour</span>
-                    </span>
-                    <p class="item-desc">Visit Baguio's scenic gardens, heritage mansion, and pine park:</p>
-                  </span>
-                </label>
-                <ul class="substops-list" aria-label="Nature and landmark tour stops">
-                  <li>
-                    <label class="substop-label">
-                      <input
-                        type="checkbox"
-                        class="checkbox-custom sub-check"
-                        data-parent="r4-nature-tour"
-                        data-id="r4-sub-botanical"
-                      />
-                      <span>Baguio Botanical Garden</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="substop-label">
-                      <input
-                        type="checkbox"
-                        class="checkbox-custom sub-check"
-                        data-parent="r4-nature-tour"
-                        data-id="r4-sub-mansion"
-                      />
-                      <span>The Mansion House</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="substop-label">
-                      <input
-                        type="checkbox"
-                        class="checkbox-custom sub-check"
-                        data-parent="r4-nature-tour"
-                        data-id="r4-sub-wright"
-                      />
-                      <span>Wright Park</span>
-                    </label>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="timeline-item" data-item-id="r5-ukay">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r5-ukay" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🧥 3:00–4:00 PM</span>
-                      <span class="item-title">Ukay-ukay shopping</span>
-                    </span>
-                    <p class="item-desc">Browse thrift shops and look for affordable clothes.</p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r6-return-dinner">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r6-return-dinner" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🍲 4:00–7:00 PM</span>
-                      <span class="item-title">Return, rest, and dinner</span>
-                    </span>
-                    <p class="item-desc">Go back to your accommodation and take a break.</p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r7-night-market">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r7-night-market" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">🌙 8:00–9:00 PM</span>
-                      <span class="item-title">Baguio Night Market</span>
-                    </span>
-                    <p class="item-desc">
-                      Enjoy an evening of shopping and street food, if you still have energy.
-                    </p>
-                  </span>
-                </label>
-              </li>
-
-              <li class="timeline-item" data-item-id="r8-sleep">
-                <label class="check-row">
-                  <input type="checkbox" class="checkbox-custom main-check" data-id="r8-sleep" />
-                  <span class="item-content">
-                    <span class="item-top">
-                      <span class="time-badge">💤 9:00 PM onwards</span>
-                      <span class="item-title">Return to accommodation and rest</span>
-                    </span>
-                  </span>
-                </label>
-              </li>
-            </ul>
-
-            <form class="add-stop-form" data-day-form="1">
-              <input
-                type="text"
-                class="add-input add-input--time"
-                name="time"
-                placeholder="Time (e.g. 3:30 PM)"
-                aria-label="Custom stop time for Day 1"
-              />
-              <input
-                type="text"
-                class="add-input add-input--title"
-                name="title"
-                placeholder="Add custom stop or café to Day 1..."
-                aria-label="Custom stop title for Day 1"
-                required
-              />
-              <button type="submit" class="add-btn">+ Add Stop</button>
-            </form>
-          </div>
-        </details>
-      </section>
-
-      <!-- ==================== DAY 2 (Swapped from original Day 1) ==================== -->
-      <section class="day-card" data-day="2" id="day-card-2">
-        <details class="day-disclosure" open>
-          <summary class="day-summary">
-            <div class="day-summary-main">
-              <div class="day-sticker" id="day-2-sticker">
-                <img
-                  src="assets/nailong-downtown.jpg"
-                  alt="Nailong wearing a pink and purple beanie with a pink travel suitcase and Baguio snacks"
-                  width="74"
-                  height="74"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="day-heading-wrap">
-                <div class="day-eyebrow">
-                  <span class="day-chip">Day 2</span>
-                  <span class="day-date">December 22, 2026</span>
-                </div>
-                <h2 class="day-title" id="day-2-subtitle">
                   Arrival • Downtown Baguio • Night Market
                 </h2>
               </div>
             </div>
             <div class="day-summary-right">
-              <span class="day-count-badge" id="day-2-badge">0 / 7 done</span>
+              <span class="day-count-badge" id="day-1-badge">0 / 7 done</span>
               <span class="day-chevron" aria-hidden="true">▾</span>
             </div>
           </summary>
 
-          <div class="day-body" id="day-2-body">
+          <div class="day-body" id="day-1-body">
             <ul class="timeline-list" data-schedule-group="downtown-tour">
               <li class="timeline-item" data-item-id="d1-meetup">
                 <label class="check-row">
@@ -569,12 +358,214 @@
               </li>
             </ul>
 
-            <form class="add-stop-form" data-day-form="2">
+            <form class="add-stop-form" data-day-form="1">
               <input
                 type="text"
                 class="add-input add-input--time"
                 name="time"
                 placeholder="Time (e.g. 6:30 PM)"
+                aria-label="Custom stop time for Day 1"
+              />
+              <input
+                type="text"
+                class="add-input add-input--title"
+                name="title"
+                placeholder="Add custom stop or café to Day 1..."
+                aria-label="Custom stop title for Day 1"
+                required
+              />
+              <button type="submit" class="add-btn">+ Add Stop</button>
+            </form>
+          </div>
+        </details>
+      </section>
+
+      <!-- ==================== DAY 2 ==================== -->
+      <section class="day-card" data-day="2" id="day-card-2">
+        <details class="day-disclosure" open>
+          <summary class="day-summary">
+            <div class="day-summary-main">
+              <div class="day-sticker" id="day-2-sticker">
+                <img
+                  src="assets/nailong-rides.jpg"
+                  alt="Nailong wearing purple heart sunglasses holding pink cotton candy by a pastel Ferris wheel"
+                  width="74"
+                  height="74"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="day-heading-wrap">
+                <div class="day-eyebrow">
+                  <span class="day-chip">Day 2</span>
+                  <span class="day-date">December 22, 2026</span>
+                </div>
+                <h2 class="day-title" id="day-2-subtitle">
+                  Rides • Botanical Garden • Mansion House • Ukay-ukay
+                </h2>
+              </div>
+            </div>
+            <div class="day-summary-right">
+              <span class="day-count-badge" id="day-2-badge">0 / 8 done</span>
+              <span class="day-chevron" aria-hidden="true">▾</span>
+            </div>
+          </summary>
+
+          <div class="day-body" id="day-2-body">
+            <ul class="timeline-list" data-schedule-group="rides-tour">
+              <li class="timeline-item" data-item-id="r1-skyranch">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r1-skyranch" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🎡 8:00–9:00 AM</span>
+                      <span class="item-title">Sky Ranch Baguio</span>
+                    </span>
+                    <p class="item-desc">Enjoy the rides and Ferris wheel beside SM City Baguio.</p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r2-arcade">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r2-arcade" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🕹️ 9:00–11:00 AM</span>
+                      <span class="item-title">Arcade and Fantasy World</span>
+                    </span>
+                    <p class="item-desc">
+                      Enjoy arcade games and explore Fantasy World, subject to opening hours and availability.
+                    </p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r3-lunch">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r3-lunch" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🍱 11:00 AM–12:00 PM</span>
+                      <span class="item-title">Lunch and rest</span>
+                    </span>
+                    <p class="item-desc">Eat and recharge before the afternoon tour.</p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r4-nature-tour">
+                <label class="check-row">
+                  <input
+                    type="checkbox"
+                    class="checkbox-custom main-check has-substops"
+                    data-id="r4-nature-tour"
+                  />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🌸 12:00–3:00 PM</span>
+                      <span class="item-title">Nature and landmark tour</span>
+                    </span>
+                    <p class="item-desc">Visit Baguio's scenic gardens, heritage mansion, and pine park:</p>
+                  </span>
+                </label>
+                <ul class="substops-list" aria-label="Nature and landmark tour stops">
+                  <li>
+                    <label class="substop-label">
+                      <input
+                        type="checkbox"
+                        class="checkbox-custom sub-check"
+                        data-parent="r4-nature-tour"
+                        data-id="r4-sub-botanical"
+                      />
+                      <span>Baguio Botanical Garden</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="substop-label">
+                      <input
+                        type="checkbox"
+                        class="checkbox-custom sub-check"
+                        data-parent="r4-nature-tour"
+                        data-id="r4-sub-mansion"
+                      />
+                      <span>The Mansion House</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="substop-label">
+                      <input
+                        type="checkbox"
+                        class="checkbox-custom sub-check"
+                        data-parent="r4-nature-tour"
+                        data-id="r4-sub-wright"
+                      />
+                      <span>Wright Park</span>
+                    </label>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="timeline-item" data-item-id="r5-ukay">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r5-ukay" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🧥 3:00–4:00 PM</span>
+                      <span class="item-title">Ukay-ukay shopping</span>
+                    </span>
+                    <p class="item-desc">Browse thrift shops and look for affordable clothes.</p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r6-return-dinner">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r6-return-dinner" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🍲 4:00–7:00 PM</span>
+                      <span class="item-title">Return, rest, and dinner</span>
+                    </span>
+                    <p class="item-desc">Go back to your accommodation and take a break.</p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r7-night-market">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r7-night-market" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">🌙 8:00–9:00 PM</span>
+                      <span class="item-title">Baguio Night Market</span>
+                    </span>
+                    <p class="item-desc">
+                      Enjoy another evening of shopping and street food, if you still have energy.
+                    </p>
+                  </span>
+                </label>
+              </li>
+
+              <li class="timeline-item" data-item-id="r8-sleep">
+                <label class="check-row">
+                  <input type="checkbox" class="checkbox-custom main-check" data-id="r8-sleep" />
+                  <span class="item-content">
+                    <span class="item-top">
+                      <span class="time-badge">💤 9:00 PM onwards</span>
+                      <span class="item-title">Return to accommodation and rest</span>
+                    </span>
+                  </span>
+                </label>
+              </li>
+            </ul>
+
+            <form class="add-stop-form" data-day-form="2">
+              <input
+                type="text"
+                class="add-input add-input--time"
+                name="time"
+                placeholder="Time (e.g. 3:30 PM)"
                 aria-label="Custom stop time for Day 2"
               />
               <input
