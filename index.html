@@ -42,6 +42,9 @@
             <span class="trip-badge">🍓 Dec 21–23, 2026</span>
             <span class="trip-badge">🌲 Baguio City Getaway</span>
             <span class="trip-badge trip-badge--nailong">💛 Nailong Buddy</span>
+            <span class="trip-badge trip-badge--autosave" id="autosave-badge" role="status" aria-live="polite">
+              💾 Auto-saved in browser
+            </span>
           </div>
 
           <h1 class="hero-title">Baguio Adventure Checklist</h1>
@@ -118,6 +121,15 @@
       <div class="toolbar-actions">
         <button
           type="button"
+          class="action-btn action-btn--edit"
+          id="toggle-edit-btn"
+          aria-pressed="false"
+          title="Edit checklist times, titles, descriptions, sub-stops, and packing items"
+        >
+          ✏️ Edit Checklist
+        </button>
+        <button
+          type="button"
           class="action-btn action-btn--swap"
           id="swap-days-btn"
           title="Swap Day 1 and Day 2 schedules"
@@ -127,8 +139,21 @@
         <button type="button" class="action-btn" id="expand-collapse-btn">
           ▾ Collapse All
         </button>
-        <button type="button" class="action-btn" id="reset-all-btn">
-          ↺ Reset
+        <button
+          type="button"
+          class="action-btn"
+          id="reset-all-btn"
+          title="Uncheck all checkboxes while keeping your custom edits"
+        >
+          ↺ Uncheck All
+        </button>
+        <button
+          type="button"
+          class="action-btn action-btn--restore"
+          id="restore-defaults-btn"
+          title="Restore the original default Baguio checklist text and items"
+        >
+          ⟲ Restore Default
         </button>
       </div>
     </nav>
@@ -623,7 +648,7 @@
     <section class="extras-grid" aria-label="Baguio essentials and trip notes">
       <div class="extra-card">
         <h2>🧣 Nailong's Baguio Bag Check</h2>
-        <ul class="essentials-list">
+        <ul class="essentials-list" id="essentials-list">
           <li>
             <label class="substop-label">
               <input type="checkbox" class="checkbox-custom pack-check" data-id="pack-jacket" />
@@ -661,6 +686,18 @@
             </label>
           </li>
         </ul>
+        <form class="add-pack-form" id="add-pack-form">
+          <label for="new-pack-input" class="sr-only">New bag check item</label>
+          <input
+            type="text"
+            id="new-pack-input"
+            class="add-input add-input--title"
+            name="packTitle"
+            placeholder="Add bag item (e.g. Lip balm, Beanie)..."
+            required
+          />
+          <button type="submit" class="add-btn">+ Add</button>
+        </form>
       </div>
 
       <div class="extra-card">
@@ -683,3 +720,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
