@@ -6,6 +6,7 @@
 (function () {
   "use strict";
 
+  const STORAGE_KEY_V3 = "baguio_nailong_checklist_v3";
   const STORAGE_KEY_V2 = "baguio_nailong_checklist_v2";
   const STORAGE_KEY_V1 = "baguio_nailong_checklist_v1";
 
@@ -18,7 +19,7 @@
     "Take lots of cute photos at Burnham Park, Botanical Garden & Mansion House! 📸🌸"
   ];
 
-  // Canonical Default Data (Day 1 & Day 2 pre-swapped as requested)
+  // Canonical Default Data (Original Day 1, Day 2, Day 3 Baguio Itinerary)
   function createDefaultData() {
     return {
       checked: {},
@@ -27,6 +28,69 @@
         {
           dayNumber: 1,
           date: "December 21, 2026",
+          subtitle: "Arrival • Downtown Baguio • Night Market",
+          stickerSrc: "assets/nailong-downtown.jpg",
+          stickerAlt:
+            "Nailong wearing a pink and purple beanie with a pink travel suitcase and Baguio snacks",
+          items: [
+            {
+              id: "d1-meetup",
+              time: "🚌 8:00–9:00 AM",
+              title: "Meet-up and arrival",
+              desc: "Meet at the bus stop/terminal for Abra and Ilocos.",
+              substops: []
+            },
+            {
+              id: "d2-checkin",
+              time: "🏨 9:00 AM–12:00 PM",
+              title: "Check-in and rest",
+              desc: "Proceed to the apartment or hotel, settle in, and freshen up.",
+              substops: []
+            },
+            {
+              id: "d3-downtown",
+              time: "⛪ 12:00–5:00 PM",
+              title: "Downtown Baguio tour",
+              desc: "Explore classic Baguio downtown favorites:",
+              substops: [
+                { id: "d3-sub-sm", title: "SM City Baguio" },
+                { id: "d3-sub-burnham", title: "Burnham Park" },
+                { id: "d3-sub-cathedral", title: "Baguio Cathedral" }
+              ]
+            },
+            {
+              id: "d4-rest",
+              time: "🛋️ 5:00–7:00 PM",
+              title: "Rest and freshen up",
+              desc: "Return to the apartment or hotel.",
+              substops: []
+            },
+            {
+              id: "d5-dinner",
+              time: "🍽️ 7:00–8:00 PM",
+              title: "Dinner / free time",
+              desc: "Have dinner before heading out.",
+              substops: []
+            },
+            {
+              id: "d6-night-market",
+              time: "🍢 8:00–9:00 PM",
+              title: "Baguio Night Market",
+              desc: "Browse ukay-ukay stalls and try street food.",
+              substops: []
+            },
+            {
+              id: "d7-sleep",
+              time: "💤 9:00 PM onwards",
+              title: "Return to accommodation and rest",
+              desc: "",
+              substops: []
+            }
+          ]
+        },
+        {
+          dayNumber: 2,
+          date: "December 22, 2026",
           subtitle: "Rides • Botanical Garden • Mansion House • Ukay-ukay",
           stickerSrc: "assets/nailong-rides.jpg",
           stickerAlt:
@@ -82,74 +146,11 @@
               id: "r7-night-market",
               time: "🌙 8:00–9:00 PM",
               title: "Baguio Night Market",
-              desc: "Enjoy an evening of shopping and street food, if you still have energy.",
+              desc: "Enjoy another evening of shopping and street food, if you still have energy.",
               substops: []
             },
             {
               id: "r8-sleep",
-              time: "💤 9:00 PM onwards",
-              title: "Return to accommodation and rest",
-              desc: "",
-              substops: []
-            }
-          ]
-        },
-        {
-          dayNumber: 2,
-          date: "December 22, 2026",
-          subtitle: "Arrival • Downtown Baguio • Night Market",
-          stickerSrc: "assets/nailong-downtown.jpg",
-          stickerAlt:
-            "Nailong wearing a pink and purple beanie with a pink travel suitcase and Baguio snacks",
-          items: [
-            {
-              id: "d1-meetup",
-              time: "🚌 8:00–9:00 AM",
-              title: "Meet-up and arrival",
-              desc: "Meet at the bus stop/terminal for Abra and Ilocos.",
-              substops: []
-            },
-            {
-              id: "d2-checkin",
-              time: "🏨 9:00 AM–12:00 PM",
-              title: "Check-in and rest",
-              desc: "Proceed to the apartment or hotel, settle in, and freshen up.",
-              substops: []
-            },
-            {
-              id: "d3-downtown",
-              time: "⛪ 12:00–5:00 PM",
-              title: "Downtown Baguio tour",
-              desc: "Explore classic Baguio downtown favorites:",
-              substops: [
-                { id: "d3-sub-sm", title: "SM City Baguio" },
-                { id: "d3-sub-burnham", title: "Burnham Park" },
-                { id: "d3-sub-cathedral", title: "Baguio Cathedral" }
-              ]
-            },
-            {
-              id: "d4-rest",
-              time: "🛋️ 5:00–7:00 PM",
-              title: "Rest and freshen up",
-              desc: "Return to the apartment or hotel.",
-              substops: []
-            },
-            {
-              id: "d5-dinner",
-              time: "🍽️ 7:00–8:00 PM",
-              title: "Dinner / free time",
-              desc: "Have dinner before heading out.",
-              substops: []
-            },
-            {
-              id: "d6-night-market",
-              time: "🍢 8:00–9:00 PM",
-              title: "Baguio Night Market",
-              desc: "Browse ukay-ukay stalls and try street food.",
-              substops: []
-            },
-            {
-              id: "d7-sleep",
               time: "💤 9:00 PM onwards",
               title: "Return to accommodation and rest",
               desc: "",
@@ -230,12 +231,12 @@
     return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
   }
 
-  // Load state from v2 localStorage (or seamlessly migrate from v1 if present)
+  // Load state from v3 localStorage (migrating checkmarks & notes from earlier versions)
   function loadState() {
     try {
-      const rawV2 = localStorage.getItem(STORAGE_KEY_V2);
-      if (rawV2) {
-        const parsed = JSON.parse(rawV2);
+      const rawV3 = localStorage.getItem(STORAGE_KEY_V3);
+      if (rawV3) {
+        const parsed = JSON.parse(rawV3);
         if (parsed && Array.isArray(parsed.days) && parsed.days.length === 3) {
           state = {
             checked: parsed.checked && typeof parsed.checked === "object" ? parsed.checked : {},
@@ -249,38 +250,16 @@
         }
       }
 
-      // Check for v1 data to migrate smoothly
-      const rawV1 = localStorage.getItem(STORAGE_KEY_V1);
-      if (rawV1) {
-        const v1 = JSON.parse(rawV1);
+      // Migrate checkmarks & notes onto the restored original Day 1/2/3 schedule
+      const rawPrev = localStorage.getItem(STORAGE_KEY_V2) || localStorage.getItem(STORAGE_KEY_V1);
+      if (rawPrev) {
+        const prev = JSON.parse(rawPrev);
         const migrated = createDefaultData();
-        if (v1 && typeof v1 === "object") {
-          migrated.checked = v1.checked && typeof v1.checked === "object" ? v1.checked : {};
-          migrated.notes = typeof v1.notes === "string" ? v1.notes : "";
-
-          if (v1.customStops && typeof v1.customStops === "object") {
-            const groupMap = {
-              "rides-tour": 0,
-              "downtown-tour": 1,
-              "homebound-tour": 2
-            };
-            Object.keys(groupMap).forEach((gKey) => {
-              const idx = groupMap[gKey];
-              const extras = Array.isArray(v1.customStops[gKey]) ? v1.customStops[gKey] : [];
-              extras.forEach((st) => {
-                migrated.days[idx].items.push({
-                  id: st.id || uid("item"),
-                  time: `✨ ${st.time || "Extra Stop"}`,
-                  title: st.title || "Custom Stop",
-                  desc: "",
-                  substops: []
-                });
-              });
-            });
-          }
-
-          if (v1.revertedSwap) {
-            swapDaysInData(migrated);
+        if (prev && typeof prev === "object") {
+          migrated.checked = prev.checked && typeof prev.checked === "object" ? prev.checked : {};
+          migrated.notes = typeof prev.notes === "string" ? prev.notes : "";
+          if (Array.isArray(prev.packingItems)) {
+            migrated.packingItems = prev.packingItems;
           }
         }
         state = migrated;
@@ -293,7 +272,7 @@
 
   function persistImmediately() {
     try {
-      localStorage.setItem(STORAGE_KEY_V2, JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEY_V3, JSON.stringify(state));
       hasPendingSave = false;
     } catch {
       // Ignore quota or restricted storage errors
