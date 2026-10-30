@@ -1485,7 +1485,7 @@ textarea:user-invalid {
     white-space: nowrap;
   }
 
-  /* Clean 2-column action button grid on mobile */
+  /* Clean 2x2 action button grid on mobile */
   .toolbar-actions {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1496,10 +1496,6 @@ textarea:user-invalid {
     justify-content: center;
     width: 100%;
     text-align: center;
-  }
-
-  .action-btn--edit {
-    grid-column: 1 / -1;
   }
 
   .day-card {
