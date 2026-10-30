@@ -1,8 +1,13 @@
 # Baguio Getaway Checklist — Cute Pink & Purple Nailong Edition 🍓💜💛
 
+**Live GitHub Pages Deployment:** https://jehooooo.github.io/CHECKLIST/
+
 An interactive, fully editable, and responsive 3-day Baguio City travel itinerary checklist (**December 21–23, 2026**) built strictly with **vanilla HTML, CSS, and JavaScript** (zero frameworks or external dependencies).
 
 ## Highlights
+
+- **"DAY WITH ME" Social Media Link Preview (Open Graph & Twitter/X Card)**:
+  - Configured with `og:title` / `og:site_name` / `twitter:title` set to **`DAY WITH ME`** and a custom `1200x630` Nailong Baguio preview card (`assets/og-preview.jpg`) for Messenger, Facebook, Discord, iMessage, Telegram, Viber, WhatsApp, and X.
 
 - **Swapped Day 1 & Day 2 Schedule**:
   - **Day 1 — December 21, 2026**: Rides • Botanical Garden • Mansion House • Ukay-ukay
