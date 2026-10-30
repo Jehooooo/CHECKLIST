@@ -1,0 +1,21 @@
+# Environment & Secrets
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.test
+.env.example
+.env.example.*
+
+# Dependencies & Virtual Environments
+node_modules/
+venv/
+.venv/
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
