@@ -1,0 +1,1168 @@
+/* ==========================================================================
+   Baguio Getaway Checklist — Cute Pink & Purple + Nailong (Milk Dragon) Theme
+   Pure Modern CSS (Zero Frameworks)
+   ========================================================================== */
+
+:root {
+  /* Cute Pink & Dreamy Lavender Palette */
+  --bg-blush: #fff5fa;
+  --bg-lilac: #f7f0ff;
+  --bg-petal: #fdf2f8;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-solid: #ffffff;
+  --surface-tint: #fdf7ff;
+  --surface-checked: #faf2ff;
+
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+
+  --purple-100: #f3e8ff;
+  --purple-200: #e9d5ff;
+  --purple-300: #d8b4fe;
+  --purple-400: #c084fc;
+  --purple-500: #a855f7;
+  --purple-600: #9333ea;
+  --purple-700: #7e22ce;
+  --purple-900: #4a1d6e;
+
+  /* Nailong Milky-Yellow Accents */
+  --nailong-cream: #fff8cc;
+  --nailong-yellow: #ffe066;
+  --nailong-gold: #f59e0b;
+  --nailong-cheek: #ff8fab;
+
+  /* Text & Borders */
+  --text-main: #432359;
+  --text-muted: #7b5894;
+  --text-soft: #9d7bb5;
+  --border-soft: #f0d9fa;
+  --border-strong: #e2bef5;
+
+  /* Gradients & Shadows */
+  --grad-primary: linear-gradient(135deg, #f472b6 0%, #c084fc 52%, #a855f7 100%);
+  --grad-soft: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+  --grad-banner: linear-gradient(135deg, #ffe4f3 0%, #f3e4ff 55%, #fff5d6 100%);
+  --shadow-card: 0 14px 34px -10px rgba(147, 51, 234, 0.14), 0 4px 12px -4px rgba(236, 72, 153, 0.1);
+  --shadow-float: 0 18px 40px -12px rgba(168, 85, 247, 0.24);
+  --shadow-pill: 0 4px 12px rgba(168, 85, 247, 0.15);
+
+  /* Radii */
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+
+  /* Reusable SVG mask icons (modern-web-guidance: checkbox) */
+  --icon-check: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>");
+  --icon-dash: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'></line></svg>");
+
+  accent-color: var(--purple-600);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Quicksand", "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-blush);
+  background-image:
+    radial-gradient(circle at 12% 14%, rgba(244, 114, 182, 0.22) 0%, transparent 38%),
+    radial-gradient(circle at 88% 10%, rgba(192, 132, 252, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 82% 78%, rgba(255, 224, 102, 0.22) 0%, transparent 36%),
+    radial-gradient(circle at 16% 85%, rgba(216, 180, 254, 0.24) 0%, transparent 40%),
+    radial-gradient(#f3cef2 1.25px, transparent 1.25px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 26px 26px;
+  background-attachment: fixed;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* Decorative Floating Sparkles Background */
+.ambient-decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.42;
+}
+
+.ambient-blob--pink {
+  width: 280px;
+  height: 280px;
+  background: #fbcfe8;
+  top: -70px;
+  left: -60px;
+}
+
+.ambient-blob--purple {
+  width: 320px;
+  height: 320px;
+  background: #e9d5ff;
+  bottom: -90px;
+  right: -80px;
+}
+
+/* Main Page Shell */
+.app-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.5rem 1.1rem 4.5rem;
+}
+
+/* ==========================================================================
+   Hero Header & Interactive Nailong Mascot Card
+   ========================================================================== */
+.hero-card {
+  position: relative;
+  background: var(--grad-banner);
+  border: 2.5px solid #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 1.75rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 1.35rem;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 92% 18%, rgba(255, 255, 255, 0.7) 0%, transparent 35%),
+    radial-gradient(circle at 12% 88%, rgba(255, 255, 255, 0.55) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.trip-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.trip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.32rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--purple-700);
+  border: 1.5px solid var(--purple-200);
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1);
+}
+
+.trip-badge--nailong {
+  background: var(--nailong-cream);
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.hero-title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.7rem, 4vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #be185d 0%, #9333ea 58%, #db2777 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  margin: 0 0 1rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Nailong Speech Bubble */
+.nailong-speech {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid var(--pink-200);
+  border-radius: 18px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--purple-900);
+  box-shadow: 0 6px 18px rgba(236, 72, 153, 0.1);
+}
+
+.nailong-mini-tag {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.58rem;
+  border-radius: var(--radius-pill);
+  background: var(--nailong-yellow);
+  color: #78350f;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* Hero Nailong Mascot Button */
+.nailong-mascot-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nailong-poke-btn {
+  position: relative;
+  appearance: none;
+  border: 3px solid #ffffff;
+  background: #fdf4ff;
+  padding: 0;
+  width: 156px;
+  height: 156px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: var(--shadow-float);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.nailong-poke-btn:focus-visible {
+  outline: 3px solid var(--purple-600);
+  outline-offset: 4px;
+}
+
+.nailong-poke-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.nailong-poke-hint {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--purple-700);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--purple-200);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nailong-poke-btn {
+    transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 240ms ease;
+    animation: nailongFloat 4.2s ease-in-out infinite;
+  }
+
+  .nailong-poke-btn:hover {
+    transform: translateY(-4px) rotate(-2deg) scale(1.03);
+  }
+
+  .nailong-poke-btn.is-jiggling {
+    animation: duangJiggle 580ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+}
+
+@keyframes nailongFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes duangJiggle {
+  0% { transform: scale(1, 1); }
+  25% { transform: scale(1.14, 0.88) rotate(-3deg); }
+  45% { transform: scale(0.92, 1.1) rotate(3deg); }
+  65% { transform: scale(1.06, 0.95) rotate(-1deg); }
+  82% { transform: scale(0.98, 1.02); }
+  100% { transform: scale(1, 1); }
+}
+
+/* ==========================================================================
+   Progress Dashboard Bar
+   ========================================================================== */
+.progress-panel {
+  margin-top: 1.25rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 0.95rem 1.15rem;
+  backdrop-filter: blur(10px);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.progress-label {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--purple-900);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.progress-stats {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--pink-600);
+}
+
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  background: var(--purple-100);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(147, 51, 234, 0.14);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #f472b6 0%, #c084fc 55%, #ffe066 100%);
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .progress-fill {
+    transition: width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.day-mini-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.day-mini-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-tint);
+  border: 1px solid var(--purple-200);
+  color: var(--text-muted);
+}
+
+.day-mini-pill.is-done {
+  background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+  border-color: var(--pink-400);
+  color: var(--pink-600);
+}
+
+/* ==========================================================================
+   Controls & Filter Tabs Toolbar
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 0.7rem 0.9rem;
+  box-shadow: var(--shadow-pill);
+  backdrop-filter: blur(10px);
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.tab-btn {
+  appearance: none;
+  border: 1.5px solid transparent;
+  background: var(--purple-100);
+  color: var(--purple-700);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 0.5rem 0.95rem;
+  min-block-size: 40px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.tab-btn:hover {
+  background: var(--pink-100);
+  color: var(--pink-600);
+}
+
+.tab-btn.is-active {
+  background: var(--grad-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.tab-btn:focus-visible,
+.action-btn:focus-visible {
+  outline: 2.5px solid var(--purple-600);
+  outline-offset: 2px;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.action-btn {
+  appearance: none;
+  border: 1.5px solid var(--border-strong);
+  background: #ffffff;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.48rem 0.85rem;
+  min-block-size: 40px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.action-btn:hover {
+  border-color: var(--pink-400);
+  background: var(--bg-blush);
+  color: var(--pink-600);
+}
+
+.action-btn--swap {
+  background: var(--nailong-cream);
+  border-color: #fcd34d;
+  color: #92400e;
+}
+
+.action-btn--swap:hover {
+  background: #fef08a;
+  border-color: #f59e0b;
+  color: #78350f;
+}
+
+/* ==========================================================================
+   Day Cards & Native <details> Disclosure
+   ========================================================================== */
+.days-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.days-stack:focus {
+  outline: none;
+}
+
+.day-card {
+  background: var(--surface);
+  border: 2px solid #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  position: relative;
+}
+
+.day-card[data-day="1"] {
+  border-top: 5px solid var(--pink-400);
+}
+
+.day-card[data-day="2"] {
+  border-top: 5px solid var(--purple-400);
+}
+
+.day-card[data-day="3"] {
+  border-top: 5px solid var(--nailong-yellow);
+}
+
+.day-card.is-hidden-by-filter {
+  display: none;
+}
+
+.day-disclosure > summary {
+  list-style: none;
+}
+
+.day-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.day-summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.35rem 1.5rem;
+  background: linear-gradient(135deg, rgba(252, 231, 243, 0.65) 0%, rgba(243, 232, 255, 0.65) 100%);
+  border-bottom: 1.5px solid var(--border-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.day-summary:focus-visible {
+  outline: 3px solid var(--purple-600);
+  outline-offset: -3px;
+}
+
+.day-summary-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.day-sticker {
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  border: 2.5px solid #ffffff;
+  background: #fdf4ff;
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.16);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.day-sticker img,
+.day-sticker svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.day-heading-wrap {
+  min-width: 0;
+}
+
+.day-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.25rem;
+}
+
+.day-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--grad-primary);
+  color: #ffffff;
+}
+
+.day-date {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--purple-700);
+}
+
+.day-title {
+  margin: 0;
+  font-size: clamp(1.08rem, 2.5vw, 1.32rem);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.day-summary-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.day-count-badge {
+  padding: 0.32rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  border: 1.5px solid var(--purple-200);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--purple-700);
+  white-space: nowrap;
+}
+
+.day-chevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid var(--purple-200);
+  display: grid;
+  place-items: center;
+  color: var(--purple-600);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .day-chevron {
+    transition: transform 220ms ease;
+  }
+}
+
+.day-disclosure[open] .day-chevron {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Timeline & Checklist Items
+   ========================================================================== */
+.day-body {
+  padding: 1.25rem 1.4rem 1.45rem;
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  background: var(--surface-solid);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 0.85rem 1.05rem;
+  box-shadow: 0 4px 14px -6px rgba(147, 51, 234, 0.1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-item {
+    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease, opacity 180ms ease;
+  }
+
+  .timeline-item:hover {
+    border-color: var(--pink-300);
+    transform: translateY(-1px);
+  }
+}
+
+.timeline-item.is-completed {
+  background: var(--surface-checked);
+  border-color: var(--purple-200);
+}
+
+.timeline-item.is-hidden-remaining {
+  display: none;
+}
+
+/* Accessible Custom Checkbox + Hit Target >= 44px (modern-web-guidance: checkbox) */
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  min-block-size: 44px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkbox-custom {
+  --checkbox-size: 1.4em;
+  --checkbox-icon-size: 0.8em;
+
+  appearance: none;
+  flex-shrink: 0;
+  display: inline-grid;
+  place-content: center;
+  inline-size: var(--checkbox-size);
+  aspect-ratio: 1;
+  margin: 0.18rem 0 0;
+  border: 2.2px solid var(--purple-400);
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(168, 85, 247, 0.12);
+}
+
+.checkbox-custom::before {
+  content: "";
+  inline-size: var(--checkbox-icon-size);
+  aspect-ratio: 1;
+  background-color: currentColor;
+  -webkit-mask: var(--checkbox-icon) no-repeat center / contain;
+  mask: var(--checkbox-icon) no-repeat center / contain;
+  scale: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .checkbox-custom {
+    transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .checkbox-custom::before {
+    transition: scale 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@media (forced-colors: active) {
+  .checkbox-custom::before {
+    background-color: CanvasText;
+  }
+}
+
+.checkbox-custom:checked {
+  --checkbox-icon: var(--icon-check);
+  background: var(--grad-primary);
+  border-color: var(--pink-500);
+}
+
+.checkbox-custom:indeterminate {
+  --checkbox-icon: var(--icon-dash);
+  background: linear-gradient(135deg, #f9a8d4, #c084fc);
+  border-color: var(--purple-500);
+}
+
+.checkbox-custom:is(:checked, :indeterminate)::before {
+  scale: 1;
+}
+
+.checkbox-custom:focus-visible {
+  outline: 2.5px solid var(--purple-600);
+  outline-offset: 3px;
+}
+
+.checkbox-custom:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  margin-bottom: 0.22rem;
+}
+
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.68rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.77rem;
+  font-weight: 800;
+  background: var(--grad-soft);
+  color: var(--purple-700);
+  border: 1px solid var(--purple-200);
+}
+
+.item-title {
+  font-size: 1.03rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.item-desc {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.timeline-item.is-completed .item-title {
+  text-decoration: line-through;
+  text-decoration-color: var(--pink-400);
+  text-decoration-thickness: 2px;
+  color: var(--text-soft);
+}
+
+.timeline-item.is-completed .item-desc {
+  color: var(--text-soft);
+}
+
+/* Sub-Stops Nested Checklist (SM City Baguio, Burnham Park, Botanical Garden, etc.) */
+.substops-list {
+  list-style: none;
+  margin: 0.65rem 0 0.1rem 2.25rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--surface-tint);
+  border: 1.5px dashed var(--purple-200);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.substop-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-block-size: 44px;
+  padding: 0.2rem 0.35rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.91rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.substop-label:hover {
+  background: rgba(244, 114, 182, 0.08);
+}
+
+.substop-label .checkbox-custom {
+  --checkbox-size: 1.22em;
+  --checkbox-icon-size: 0.72em;
+  margin-top: 0;
+  border-radius: 5px;
+}
+
+.substop-label.is-sub-checked span {
+  text-decoration: line-through;
+  text-decoration-color: var(--purple-400);
+  color: var(--text-soft);
+}
+
+/* Custom User-Added Item Delete Button */
+.custom-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.delete-custom-btn {
+  appearance: none;
+  border: 1px solid var(--pink-200);
+  background: var(--pink-100);
+  color: var(--pink-600);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.65rem;
+  min-block-size: 36px;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.delete-custom-btn:hover {
+  background: var(--pink-500);
+  color: #ffffff;
+}
+
+.delete-custom-btn:focus-visible {
+  outline: 2px solid var(--purple-600);
+  outline-offset: 2px;
+}
+
+/* Add Extra Stop Per-Day Form */
+.add-stop-form {
+  margin-top: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1.5px dashed var(--border-soft);
+}
+
+.add-input {
+  appearance: none;
+  border: 1.5px solid var(--purple-200);
+  background: #ffffff;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  min-block-size: 42px;
+  border-radius: var(--radius-pill);
+}
+
+.add-input::placeholder {
+  color: var(--text-soft);
+}
+
+.add-input:focus-visible {
+  outline: 2.5px solid var(--pink-400);
+  outline-offset: 1px;
+  border-color: var(--pink-400);
+}
+
+.add-input--time {
+  width: 178px;
+}
+
+.add-input--title {
+  flex: 1;
+  min-width: 180px;
+}
+
+.add-btn {
+  appearance: none;
+  border: none;
+  background: var(--grad-primary);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 0.55rem 1.05rem;
+  min-block-size: 42px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+}
+
+.add-btn:hover {
+  filter: brightness(1.05);
+}
+
+.add-btn:focus-visible {
+  outline: 2.5px solid var(--purple-700);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Trip Notes & Nailong Baguio Essentials Card
+   ========================================================================== */
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.extra-card {
+  background: var(--surface);
+  border: 2px solid #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.3rem;
+  box-shadow: var(--shadow-card);
+}
+
+.extra-card h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--purple-900);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 128px;
+  resize: vertical;
+  border: 1.5px solid var(--purple-200);
+  border-radius: 16px;
+  padding: 0.75rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--surface-tint);
+  line-height: 1.5;
+}
+
+.notes-textarea:focus-visible {
+  outline: 2.5px solid var(--pink-400);
+  border-color: var(--pink-400);
+}
+
+.notes-saved-hint {
+  margin-top: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.essentials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 0.5rem;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Floating Heart / Confetti Burst Particles */
+.burst-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.burst-particle {
+  position: absolute;
+  font-size: 1.35rem;
+  will-change: transform, opacity;
+  animation: particlePop 1100ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes particlePop {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.5) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.25) rotate(var(--rot));
+  }
+}
+
+/* View Transition Reduced Motion Compliance (modern-web-guidance: same-document-transitions) */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .burst-particle {
+    animation: none !important;
+    display: none;
+  }
+}
+
+/* Responsive Mobile Tweaks */
+@media (max-width: 680px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .trip-pill-row {
+    justify-content: center;
+  }
+
+  .nailong-speech {
+    text-align: left;
+  }
+
+  .nailong-mascot-wrap {
+    order: -1;
+  }
+
+  .nailong-poke-btn {
+    width: 132px;
+    height: 132px;
+  }
+
+  .day-summary {
+    grid-template-columns: 1fr;
+    padding: 1.1rem;
+  }
+
+  .day-summary-right {
+    justify-content: space-between;
+  }
+
+  .substops-list {
+    margin-left: 0.5rem;
+  }
+
+  .essentials-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Clean Print Friendly Layout */
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .toolbar,
+  .add-stop-form,
+  .ambient-decor,
+  .nailong-poke-hint,
+  .delete-custom-btn {
+    display: none !important;
+  }
+
+  .day-card,
+  .hero-card,
+  .extra-card {
+    box-shadow: none;
+    border: 1.5px solid #d8b4fe;
+    break-inside: avoid;
+  }
+}
